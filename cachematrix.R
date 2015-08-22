@@ -10,7 +10,7 @@ makeCacheMatrix <- function(x = matrix())
     set <- function(y)
     {
         x <<- y
-        i <<- NULL  ##When a new matrix is created set inverse to NULL
+        i <<- NULL  ##When value of matrix is changed set inverse to NULL
     }
     ##Internal Function to get the value of the matrix
     get <- function()
@@ -22,16 +22,16 @@ makeCacheMatrix <- function(x = matrix())
     {
         i <<- mean
     }
-    ##Internal Function to get the valu of Inverse of the Matr
+    ##Internal Function to get the value of Inverse of the Matr
     getInverse <- function()
     {
         i
     }
-    ##List of Internal Functions in teh Function
+    ##List of Internal Functions in the Function
     list(set = set, get = get, setInverse = setInverse, getInverse = getInverse)
 }
 
-##Function to Compute the Inverse of a Matrix
+##Function to Compute the Inverse of a Matrix or simply return inverse when already computed
 cacheSolve <- function(x, ...)
 {
     ##Obtain value of Inverse of Matrix from the Function
@@ -42,7 +42,7 @@ cacheSolve <- function(x, ...)
         message("Getting Cache Value")
         return (i)
     }
-    ##If value is not stored in cache, Calculate value of Inverse and return the value
+    ##If value is NULL, Calculate value of Inverse and return the value
     data <- x$get()
     i <- solve(data,...)
     x$setInverse(i)
